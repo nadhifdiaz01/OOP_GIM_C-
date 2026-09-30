@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+
+namespace KerangkaGame
+{
+    class Karakter
+    {
+        public int jumlahSenjata, jumlahPower;
+
+        // enskapsulasi
+        public string nama{ get; private set; }
+        public int kesehatan{ get; private set; }
+        public int senjata{ get; private set; }
+
+        // membuat constructor
+        public Karakter(string nama, int kesehatan, int senjata)
+        {
+            this.nama = nama;
+            this.kesehatan = kesehatan;
+            this.senjata = senjata;
+        }
+
+        public void Serang(Karakter target) // membuat methode menyerang
+        {
+            Console.WriteLine("===> Mulai Serangan");
+            target.TerimaSerangan(this.senjata); 
+        }
+
+        public void  TerimaSerangan(int jumlahSerangan) // objek menerima serangan
+        {
+            kesehatan -= jumlahSerangan;
+            Console.WriteLine($"{nama} diserang dengan {jumlahSerangan}.Sisa kesehatan {kesehatan}" );
+        }
+
+        public void getData()
+        {
+            Console.WriteLine($"Karakter{nama}");
+        }
+    }
+
+    class MainProgram
+    {
+        static void Main(string[] args)
+        {
+            Karakter playerUtama = new Karakter("Muhammad Nadhif Diaz Syafrudin", 100, 100); // player utama
+            Karakter musuh = new Karakter("Damar eputbol", 100, 100);
+
+            // interaksi 
+            playerUtama.Serang(musuh);
+            musuh.Serang(playerUtama);
+        } 
+    } 
+} 
