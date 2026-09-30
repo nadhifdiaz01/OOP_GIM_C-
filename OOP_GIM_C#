@@ -26,10 +26,17 @@ namespace KerangkaGame
             target.TerimaSerangan(this.senjata); 
         }
 
-        public void  TerimaSerangan(int jumlahSerangan) // objek menerima serangan
+        public void TerimaSerangan(int jumlahSerangan) // objek menerima serangan
         {
             kesehatan -= jumlahSerangan;
             Console.WriteLine($"{nama} diserang dengan {jumlahSerangan}.Sisa kesehatan {kesehatan}" );
+        }
+
+        public void TambahKesehatan(int jumlahPulih)
+        {
+            kesehatan += jumlahPulih;
+            Console.WriteLine("===> Pemulihan Kesehatan");
+            Console.WriteLine($"{nama} memulihkan kesehatan sebesar {jumlahPulih}. Sisa kesehatan menjadi {kesehatan}");
         }
 
         public void getData()
@@ -42,12 +49,14 @@ namespace KerangkaGame
     {
         static void Main(string[] args)
         {
-            Karakter playerUtama = new Karakter("Muhammad Nadhif Diaz Syafrudin", 100, 100); // player utama
-            Karakter musuh = new Karakter("Damar eputbol", 100, 100);
+            Karakter playerUtama = new Karakter("Muhammad Nadhif Diaz Syafrudin", 100, 20); // player utama
+            Karakter musuh = new Karakter("Damar", 100, 40);
 
             // interaksi 
             playerUtama.Serang(musuh);
             musuh.Serang(playerUtama);
+            playerUtama.TambahKesehatan(20);
+            musuh.TambahKesehatan(20);
         } 
     } 
 } 
